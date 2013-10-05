@@ -2302,7 +2302,7 @@ header will be inserted."
   (markdown-ensure-blank-line-before)
   (let (hdr)
     (cond (setext
-           (setq hdr (make-string (length text) (if (= level 2) ?- ?=)))
+           (setq hdr (make-string (string-width text) (if (= level 2) ?- ?=)))
            (insert text "\n" hdr))
           (t
            (setq hdr (make-string level ?#))
@@ -2310,7 +2310,7 @@ header will be inserted."
   (markdown-ensure-blank-line-after)
   ;; Leave point at end of text
   (if setext
-      (backward-char (1+ (length text)))
+      (backward-char (1+ (string-width text)))
     (backward-char (1+ level))))
 
 (defun markdown-insert-header-dwim (&optional arg setext)
